@@ -25,5 +25,4 @@ router.delete("/products/:id", verifyAdmin, deleteProduct); // Delete product
 router.get("/orders", verifyAdmin, getAllOrders); // Get all orders
 router.put("/orders/:id", verifyAdmin, updateOrderStatus); // Update order stat
 
-
 export default router;

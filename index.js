@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./src/routes/authRoutes.js"; // Import routes
 import adminRoutes from "./src/routes/adminRoutes.js";
+import userRoutes from "./src/routes/userRoutes.js";
 import sequelize from "./src/config/db.js"; // Sequelize connection setup
 import requestLogger from "./src/middleware/requestLogger.js";
 
@@ -16,7 +17,7 @@ app.use(express.json()); // Parse JSON body
 app.use(requestLogger)
 
 // Sync Sequelize models with the database
-sequelize.sync({ alter: true, force: true })
+sequelize.sync({ alter: true })
     .then(() => console.log("Database synchronized"))
     .catch((err) => console.error("Database sync error:", err));
 
@@ -24,6 +25,7 @@ sequelize.sync({ alter: true, force: true })
 // Routes
 app.use("/api/auth", authRoutes); 
 app.use("/api/admin", adminRoutes)
+app.use("/api/user", userRoutes)
 
 
 
