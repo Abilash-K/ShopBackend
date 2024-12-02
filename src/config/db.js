@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import logger from "../utils/logger";
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ const sequelize = new Sequelize(
     {
         host: process.env.DB_HOST,       // Host where your DB is located
         dialect: process.env.DB_DIALECT, // Specify dialect explicitly (PostgreSQL in this case)
-        logging: false,                   // Disable logging queries
+        logging: (msg) => logger.info(`SQL: ${msg}`), // Log queries
     }
 );
 
